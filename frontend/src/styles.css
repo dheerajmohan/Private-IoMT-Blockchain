@@ -1,0 +1,29 @@
+main {
+  margin-top: 60px;
+}
+
+p {
+    
+  margin: 100px;
+  width: 80%;
+  white-space: nowrap;
+  overflow: auto;
+}​	
+
+#content {
+  display: none;
+}
+
+form {
+  width: 350px;
+  margin-bottom: 10px;
+}
+
+ul {
+  margin-bottom: 0px;
+}
+
+#completedTaskList .content {
+  color: grey;
+  text-decoration: line-through;
+}

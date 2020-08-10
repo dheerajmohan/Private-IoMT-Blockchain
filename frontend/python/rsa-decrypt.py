@@ -1,0 +1,19 @@
+from Crypto.PublicKey import RSA
+from Crypto.Cipher import PKCS1_OAEP
+import binascii
+
+f = open('pubKey.pem','r')
+pubKey = RSA.importKey(f.read())
+f.close()
+
+f = open('privKey.pem','r')
+privKey = RSA.importKey(f.read())
+f.close()
+
+
+input = 'bdc565bc23b526a02cd49d9b3899c344032b91751c899d9874f96a76dba45c576116686540980b1c261d6e1836273e4a2eee744aa856b4d2a708103f9e4dffa9809a89ca6261e2662b5d6d39dc2a3b497725588bfa709e3b7b1cc7677f682942bf5c8ed457f42be93d752c1aaf1404dda6a7c902d44211ead19d1a13e78e53d093123f7192b7f435fac49c53f5578459e08bd3edc053abbc39b47d19d62a76e28a2078d3045642d22dcd88ca12f4bf51288c9aad9744d77ce445251282e9c361d758cda9e6a6b7f63e7e08c857159fe578da32b83717955d2540b61f6bca8e8a5b33479eb70821fc83a440d07e6aaa4b969603a16af2d420c66f725de5f388aa1489d118267137772c2690795ad03dca1012305b76e83ededbb0fb9a36cb16bc350f6491bf289d52b292f9153a62cbe479f1714873205b19921810d3923a2fe4711326934053f6493403c19f62664e1a677d5bea1951fc69c819735a09506f10c891a7705e6fb16d1173b7878a26a021cb0607ae10864f359e869a32ada36439'
+encrypted = binascii.unhexlify(input)
+
+decryptor = PKCS1_OAEP.new(privKey)
+decrypted = decryptor.decrypt(encrypted)
+print('Decrypted:', (decrypted).decode('UTF-8'))
