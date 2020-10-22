@@ -1,3 +1,4 @@
+#Server program to send encrypted sensor data
 from flask import Flask, jsonify
 # from piozero import CPUTemperature
 from flask import Flask
@@ -6,6 +7,7 @@ from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
 import binascii
 
+#Opening key files
 f = open('pubKey.pem','r')
 pubKey = RSA.importKey(f.read())
 f.close()
