@@ -1,3 +1,5 @@
+#Program to implement double-encryption mechanism
+
 from flask import Flask, jsonify
 from gpiozero import CPUTemperature
 from flask import Flask
@@ -19,7 +21,7 @@ unpad = lambda s: s[:-ord(s[len(s) - 1:])]
 password_characters = string.ascii_letters + string.digits + string.punctuation
 count = 0
 
-
+#AES Encryption
 def aes_encrypt(raw, password):
     private_key = hashlib.sha256(password.encode("utf-8")).digest()
     raw = pad(raw).encode("utf-8")
@@ -27,7 +29,7 @@ def aes_encrypt(raw, password):
     cipher = AES.new(private_key, AES.MODE_CBC, iv)
     return base64.b64encode(iv + cipher.encrypt(raw))
 
-
+#AES Decryption
 def aes_decrypt(enc, password):
     private_key = hashlib.sha256(password.encode("utf-8")).digest()
     enc = base64.b64decode(enc)
